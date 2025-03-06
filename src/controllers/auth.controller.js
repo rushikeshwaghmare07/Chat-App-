@@ -104,3 +104,20 @@ export const signin = async (req, res) => {
     });
   }
 };
+
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.log("Error in logout controller:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
