@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import { signupSchema } from "../user.validation.js";
+import { signupSchema } from "../validations/user.validation.js";
 import { generateToken } from "../utils/jwt.js";
 
 export const signup = async (req, res) => {
