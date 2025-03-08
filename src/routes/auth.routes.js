@@ -8,6 +8,8 @@ router.post("/signup", signup);
 router.post("/signin", signin);
 router.post("/signout", logout);
 
-router.put("/updateProfile", protectRoutes, updateProfile);
+router.put("/update-profile", protectRoutes, updateProfile);
+
+router.get("/check", protectRoutes, checkAuth);
 
 export default router;
