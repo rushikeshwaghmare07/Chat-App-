@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Message from "../models/message.model.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
@@ -22,3 +23,31 @@ export const getUsersForSidebar = async (req, res) => {
     });
   }
 };
+
+export const getMessages = async (req, res) => {
+  try {
+    const { id: userToChatId } = req.params;
+    const myId = req.user._id;
+
+    const message = await Message.find({
+      $or: [
+        { senderId: myId, receiverId: userToChatId },
+        { senderId: userToChatId, receiverId: myId },
+      ],
+    })
+
+    return res.status(200).json({
+      success: true,
+      message: "Messages fetched successfully",
+      message,
+    })
+
+  } catch (error) {
+    console.log("Error in getMessages controller:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+}
