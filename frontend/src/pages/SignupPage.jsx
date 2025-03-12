@@ -22,7 +22,7 @@ const SignupPage = () => {
       return toast.error("Invalid email format");
     if (!formData.password) return toast.error("Password is required");
     if (formData.password.length < 6)
-      return toast.error("Password must be at least 6 characters");
+      return toast.error("Password must be at least 6 characters long");
 
     return true;
   };
@@ -64,7 +64,7 @@ const SignupPage = () => {
                 <input
                   type="text"
                   className={`input input-bordered w-full `}
-                  placeholder="Enter you full name"
+                  placeholder="Enter your full name"
                   value={formData.fullName}
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
@@ -81,7 +81,7 @@ const SignupPage = () => {
                 <input
                   type="email"
                   className={`input input-bordered w-full`}
-                  placeholder="email@example.com"
+                  placeholder="Email ID"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
